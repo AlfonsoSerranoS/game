@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:300,400,600,700&amp;lang=en">
+  <title>Iniciar sesión - Reflex Ability Test</title>
+</head>
+
+<body style="background-image: url('static/images/graph-background.png')"> <!--style="background-image: url('static/images/fondo-oscuro.jpg')"-->
+
+
+<section class="zona_central">
+  <form name="login_form" id="login_form" class="formulario-login"> <!--action="/play"-->
+  <div class="container">
+    <div class="row">
+      <div class="col-1 col-lg-3 col-xxl-4"> </div>
+      <div class="col-10 col-lg-6 col-xxl-4 seccion text-center" > <!--izquierda-->
+        <br/>
+        <br/>
+        <div class="bg-custom-2">
+          <h1><b>Reflex Ability Test</b></h1>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="col-10 text-left" >
+          <p>Introduzca su código de identificación</p>
+        </div>
+          <div class="form-group cajas-form">
+            <input type="text" class="form-control" placeholder="Código de usuario" id="id_code" name="id_code">
+          </div>
+          <br/>
+          <div class="form-group">
+            <button type="submit" id="submitButton" name="submitButton" value="Submit" class="btn btn-primary">Entrar</button>
+          </div>
+          <br/>
+        <p>¿No conoce su código de usuario? <br/> Pulse <a href="registro.jsp">aquí</a> para más información.</p>
+
+      </div>
+      <div class="col-1 col-lg-3 col-xxl-4" > </div>
+
+    </div>
+  </div>
+  </form>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login_handler.js') }}"></script>
+</body>
+</html>

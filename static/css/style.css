@@ -1,0 +1,217 @@
+
+body{
+  /*background: "url({{ url_for('static', filename='images/fondo12.jpg') }})";*/
+  background-position: center center;/*center center;*/
+  background-size: 90em 60em; /*cover*/
+  background-repeat: no-repeat;
+}
+
+#canvas {
+  /*width: 400;
+  height: 400;*/
+}
+
+.header-login{
+    background-color: rgb(255, 255, 255); /*background-color: rgb(24, 112, 95);*/
+    color: rgba(13, 9, 33, 0.9);
+    text-align: center;
+    padding-bottom: 0.5%;
+    font-family: 'Montserrat';
+    box-shadow: 0px 2px 10px #000;
+}
+
+.header-login h1{
+    padding-top: 1%;
+}
+
+.bg-custom {
+    background-color: rgba(13, 9, 33, 0.9);
+    padding-bottom: 0.5%;
+    box-shadow: 0px 2px 10px #000;
+}
+
+.bg-custom-2 {
+    color: rgba(13, 9, 33, 0.9);
+}
+
+.zona_central{
+    min-height: 85vh;
+}
+
+.seccion{
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.85); /*rgba(23, 19, 43, 0.9)*/
+    box-shadow: 0px 2px 10px #000;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    font-family: Montserrat;
+    color: black;
+    min-height: 75vh;
+}
+
+.seccion h2{
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+.izquierda{
+    margin-right: 4.1%;
+    margin-left: 4%;
+}
+
+.derecha{
+    margin-left: 4.1%;
+    margin-right: 4%;
+}
+
+.cajas-form{
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.registro {
+    margin-right: 20%;
+    margin-left: 20%;
+    box-shadow: 0px 0px 4px #000;
+}
+
+.cajas-registro{
+    padding-left: 18%;
+    padding-right: 18%;
+}
+
+.legal{
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 4%;
+    box-shadow: 0px 0px 4px #000;
+    margin-top: 4%;
+}
+
+.texto-legal{
+    text-align: justify;
+}
+
+
+.body-catalogo{
+    background-color: white;
+    background-image: none;
+}
+
+.header-catalogo {
+    box-shadow: 0px 0px 4px #000;
+}
+
+.container-catalogo{
+    font-family: Montserrat;
+    margin-top: 5%;
+}
+
+.principal{
+    padding-right: 3%;
+}
+
+.sidebar{
+    border-radius: 4px;
+    background-color: white; /*(Pon el background color que quieras)*/
+    margin-bottom: 4%;
+    font-family: Montserrat;
+}
+
+.footer-generico {
+    color: white;
+    font-size: 0.8em;
+    margin-top: 3%;
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    box-shadow: 0px 0px 3px #000;
+    background-color: #333;
+    font-family: Montserrat;
+}
+
+.acceso-admin{
+    margin-right: 20%;
+    margin-left: 20%;
+    box-shadow: 0px 0px 4px #000;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+.avatar{
+    border-radius: 150px;
+    margin-bottom: 3%;
+}
+
+.fixed{position:fixed; top:6.5%;}
+.quieto{
+}
+
+.container-admin{
+    font-family: Montserrat;
+    margin-top: 4%;
+}
+
+.container-admin h2{
+    font-weight: 600;
+}
+
+.seccion-admin{
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 1%;
+    margin-bottom: 4%;
+    margin-right: 2%;
+    padding: 2%;
+    box-shadow: 0px 0px 4px #000;
+}
+
+.sombreado{
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    padding: 2%;
+    padding-right: 0%;
+    box-shadow: 0px 0px 4px #000;
+    margin-top: 1.5%;
+}
+
+.sombreado-historial{
+    box-shadow: 0px 0px 4px #000;
+    background-color: rgb(255, 255, 255);
+}
+
+.lista-juegos{
+    max-height: 390px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-right: 1%;
+}
+
+.gestor-productos {
+    padding-right: 1%;
+    margin-rigth: 1%;
+    padding-left: 1%;
+}
+
+.scrollable {
+    max-height: 390px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.imagen-juego {
+    height: 240px;
+    width: 180px;
+    margin: 3%;
+    margin-top: 2%;
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px #000;
+}
+
+.imagen-tarjetas {
+    height: 60%;
+    width: 95%;
+    margin: 3%;
+    margin-top: 2%;
+    border-width: 0px;
+}
