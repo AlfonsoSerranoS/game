@@ -227,6 +227,11 @@ pylama==8.3.8
 pylama-pylint==3.1.1
 pylint==2.14.5
 pyls-spyder==0.4.0
+pyobjc-core                   8.5
+pyobjc-framework-Cocoa        8.5
+pyobjc-framework-CoreServices 8.5
+pyobjc-framework-FSEvents     8.5
+pyodbc                        4.0.34
 pyodbc==4.0.34
 pyOpenSSL==22.0.0
 pyparsing==3.0.9
@@ -331,7 +336,6 @@ XlsxWriter==3.0.3
 xlwings==0.27.15
 yapf==0.31.0
 yarl==1.8.1
-yfinance==0.1.70
 zict==2.1.0
 zipp==3.8.0
 zope.interface==5.4.0
