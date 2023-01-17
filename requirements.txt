@@ -234,7 +234,6 @@ PyQt5-sip==12.11.0
 pyrsistent==0.18.0
 PySocks==1.7.1
 pytest==7.1.2
-Python==3.9.12
 python-dateutil==2.8.2
 python-lsp-black==1.2.1
 python-lsp-jsonrpc==1.0.0
