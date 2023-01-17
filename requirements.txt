@@ -227,10 +227,6 @@ pylama==8.3.8
 pylama-pylint==3.1.1
 pylint==2.14.5
 pyls-spyder==0.4.0
-pyobjc-core==8.5
-pyobjc-framework-Cocoa==8.5
-pyobjc-framework-CoreServices==8.5
-pyobjc-framework-FSEvents==8.5
 pyodbc==4.0.34
 pyOpenSSL==22.0.0
 pyparsing==3.0.9
@@ -285,8 +281,6 @@ sphinxcontrib-htmlhelp==2.0.0
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
-spyder==5.3.3
-spyder-kernels==2.3.3
 SQLAlchemy==1.4.39
 stack-data==0.2.0
 statsmodels==0.13.2
