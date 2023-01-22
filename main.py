@@ -51,10 +51,11 @@ def info():
     return "<p>Info!</p>"
 
 
-# BUILDING IN PROGRESS....
 @app.route('/save_measurement', methods=['POST', 'GET'])
 def saveMeasurement():
   if request.method == "POST":
+    if not os.path.exists(os.path.join(basedir, 'measurements.db')):
+        db.create_all()
     measured_data = request.get_json()
     db.session.add(Store_measurements(measured_data['user_id'],
         datetime.fromtimestamp(measured_data['timestamp']),
@@ -64,7 +65,6 @@ def saveMeasurement():
   results = {'rows': rows,
             'user_id': measured_data['user_id']}
   return jsonify(results)
- # ... BUILDING IN PROGRESS
 
 
 if __name__ == '__main__':
