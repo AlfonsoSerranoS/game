@@ -1,0 +1,17 @@
+<table>
+    <tr>
+      <th>id</th>
+      <th>user_id</th>
+      <th>timestamp</th>
+      <th>reaction_time</th>
+    </tr>
+    {% for measurement in data %}
+      <tr>
+        <td>{{ measurement.id }}</td>
+        <td>{{ measurement.user_id }}</td>
+        <td>{{ measurement.timestamp }}</td>
+        <td>{{ measurement.reaction_time }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  

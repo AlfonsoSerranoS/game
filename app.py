@@ -76,6 +76,12 @@ def download_csv_file():
                  as_attachment=True)
 
 
+@app.route('/display_data_201709739', methods=['POST', 'GET'])
+def display_csv_file():
+    with app.app_context():
+        data = Store_measurements.query.all()
+        return render_template('display_data.html', data=data)
+
 
 if __name__ == '__main__':
     app.run()
