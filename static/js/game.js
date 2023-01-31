@@ -148,6 +148,7 @@ function drawBorders(){
 function regenerate_position() {
   var x = 0;
   var y = 0;
+  bounce_counter = 0;
   var enter_side = Math.floor(Math.random() * 4);
   var direction = []
   var indifferent = Math.random() < 0.5 ? -1 : 1;
