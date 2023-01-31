@@ -25,8 +25,7 @@ class Store_measurements(db.Model):
         self.timestamp = timestamp
         self.reaction_time = reaction_time
 
-
-
+ 
 @app.route("/")
 def index():
     '''
@@ -35,15 +34,6 @@ def index():
     measured by the smartband.
     '''
     return render_template("play.html")
-
-@app.route("/read_id", methods=['POST','GET'])
-def read_id():
-    if request.method == "POST":
-        id_code = request.get_json()
-    result = {'id_code': id_code['user_id']}
-    if not os.path.exists(os.path.join(basedir, 'measurements.db')):
-        db.create_all()
-    return jsonify(result)
 
 
 @app.route("/info")
@@ -67,6 +57,26 @@ def saveMeasurement():
   return jsonify(results)
 
 
+@app.route('/download', methods=['POST', 'GET'])
+def send_csv_file():
+    with app.app_context():
+        msg = Message(subject="Database File",
+                      sender=app.config.get("MAIL_USERNAME"),
+                      recipients=["alfonso.serrano.suner999@gmail.com"])
+        # Create a csv file from the database
+        with open('database.csv', 'w') as file:
+            writer = csv.writer(file)
+            # Write the headers
+            writer.writerow(["id", "user_id", "timestamp", "reaction_time"])
+            # Write the data from the database
+            for measurement in Store_measurements.query.all():
+                writer.writerow([measurement.id, measurement.user_id, measurement.timestamp, measurement.reaction_time])
+        with open('database.csv', 'rb') as f:
+            # Attach the csv file to the email
+            msg.attach("database.csv", "text/csv", f.read())
+        mail.send(msg)
+
+
 if __name__ == '__main__':
     app.run()
 
@@ -74,7 +84,7 @@ if __name__ == '__main__':
 from flask_mail import Mail, Message
 import csv
 
-# configure the mail extension
+# Configure the mail extension
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
@@ -83,22 +93,22 @@ app.config['MAIL_PASSWORD'] = 'ReactionTimeMeasurementsProject'
 
 mail = Mail(app)
 
-# create a function that will send the email
+# Define the function to send the data via email
 def send_csv_file():
     with app.app_context():
         msg = Message(subject="Database File",
                       sender=app.config.get("MAIL_USERNAME"),
                       recipients=["alfonso.serrano.suner999@gmail.com"])
-        # create a csv file from the database
+        # Create a csv file from the database
         with open('database.csv', 'w') as file:
             writer = csv.writer(file)
-            # write the headers
+            # Write the headers
             writer.writerow(["id", "user_id", "timestamp", "reaction_time"])
-            # write the data from the database
+            # Write the data from the database
             for measurement in Store_measurements.query.all():
                 writer.writerow([measurement.id, measurement.user_id, measurement.timestamp, measurement.reaction_time])
         with open('database.csv', 'rb') as f:
-            # attach the csv file to the email
+            # Attach the csv file to the email
             msg.attach("database.csv", "text/csv", f.read())
         mail.send(msg)
 
@@ -113,4 +123,4 @@ schedule.every().day.at("07:00").do(job)
 
 while True:
     schedule.run_pending()
-    time.sleep(3600)
+    time.sleep(3600)  # Sleep for an hour and revise again schedule to run pending.

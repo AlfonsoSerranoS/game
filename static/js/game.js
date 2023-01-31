@@ -1,6 +1,8 @@
 const canvas = document.querySelector('canvas');
 //var screenWidth = window.innerWidth;
 //var screenHeight = window.innerHeight;
+
+// We make sure the canvas' width and height is adjusted to the size of the user's screen (at least when it is first displayed)
 var parent = canvas.parentNode;
 var parentWidth = parent.clientWidth;
 var parentHeight = parent.clientHeight;
@@ -11,7 +13,7 @@ const context = canvas.getContext('2d');
 var user_id = 0;
 var bounce_counter = 0;
 var bounce_limit = 15;
-var game_ended = 0;
+var game_ended = 0;  // Control variable, while its value is 0 the game continues.
 
 
 class Element {
@@ -31,7 +33,7 @@ class Element {
     this.start_time = new Date().toISOString();
     this.in_visible_area = 0;
   }
-  // Function to set the new position of the square
+  // 'Setter' function to set the new position of the square
   setPosition(new_x, new_y) {
     this.position = {
       x: new_x,
@@ -40,16 +42,14 @@ class Element {
     this.in_visible_area = 0;
     bounce_counter = 0;
   }
-  // Function to set the new direction of the square
+  // 'Setter' function to set the new direction of the square
   setDirection(new_direction) {
     this.direction = new_direction;
   }
-  // Function to set the new velocity of the square
+  // 'Setter' function to set the new velocity of the square
   setVelocity() {
     var seed = 2*Math.random();
     this.velocity = {
-      //x: this.direction[0]*(Math.random()*2+0.6),
-      //y: this.direction[1]*(Math.random()*2+0.6)
       x: (this.direction[0]*seed)+0.3,
       y: (this.direction[1]*Math.sqrt(4-seed*seed))
     }
@@ -57,11 +57,11 @@ class Element {
       this.velocity.y = this.direction[1]*0.1
     }
   }
-  // Function that when called sets the new start time of the square
+  // 'Setter' function that when called sets the new start time of the square
   setStartTime(new_time) {
     this.start_time = new_time;
   }
-  // Function to get the start time of the square
+  // 'Getter' function to get the start time of the square
   getStartTime() {
     return this.start_time;
   }
@@ -144,6 +144,7 @@ function drawBorders(){
   context.fillRect(canvas.width-51,0,50,canvas.height);
 }
 
+// Function to regenerate the square's initial (hidden) position (x and y coordinates) and its direction.
 function regenerate_position() {
   var x = 0;
   var y = 0;
@@ -194,7 +195,6 @@ function regenerate_position() {
       } else {
         direction.push(indifferent,-1);
       }
-      //direction.push(indifferent,-1);
       break;
     default:
       y = canvas.height-50;
@@ -232,6 +232,7 @@ function play() {
         reactionTime = reactionTime/1000;  // (Converting to seconds)
         console.log("Reaction time: ");
         console.log(reactionTime);
+        // We prepare the measurement for sending...
         var measurement = {
           "user_id" : user_id,
           "timestamp" : Date.now()/1000,
