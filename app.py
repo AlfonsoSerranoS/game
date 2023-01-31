@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, url_for, request, jsonify, session
+from flask import Flask, render_template, url_for, request, jsonify, session, send_file
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import csv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -57,12 +58,9 @@ def saveMeasurement():
   return jsonify(results)
 
 
-@app.route('/download', methods=['POST', 'GET'])
-def send_csv_file():
+@app.route('/download_201709739', methods=['POST', 'GET'])
+def download_csv_file():
     with app.app_context():
-        msg = Message(subject="Database File",
-                      sender=app.config.get("MAIL_USERNAME"),
-                      recipients=["alfonso.serrano.suner999@gmail.com"])
         # Create a csv file from the database
         with open('database.csv', 'w') as file:
             writer = csv.writer(file)
@@ -71,56 +69,13 @@ def send_csv_file():
             # Write the data from the database
             for measurement in Store_measurements.query.all():
                 writer.writerow([measurement.id, measurement.user_id, measurement.timestamp, measurement.reaction_time])
-        with open('database.csv', 'rb') as f:
-            # Attach the csv file to the email
-            msg.attach("database.csv", "text/csv", f.read())
-        mail.send(msg)
+        # Download the csv file in the administrator browser
+        return send_file('database.csv',
+                 mimetype='text/csv',
+                 attachment_filename='database.csv',
+                 as_attachment=True)
+
 
 
 if __name__ == '__main__':
     app.run()
-
-
-from flask_mail import Mail, Message
-import csv
-
-# Configure the mail extension
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'reaction.time.measurements@gmail.com'
-app.config['MAIL_PASSWORD'] = 'ReactionTimeMeasurementsProject'
-
-mail = Mail(app)
-
-# Define the function to send the data via email
-def send_csv_file():
-    with app.app_context():
-        msg = Message(subject="Database File",
-                      sender=app.config.get("MAIL_USERNAME"),
-                      recipients=["alfonso.serrano.suner999@gmail.com"])
-        # Create a csv file from the database
-        with open('database.csv', 'w') as file:
-            writer = csv.writer(file)
-            # Write the headers
-            writer.writerow(["id", "user_id", "timestamp", "reaction_time"])
-            # Write the data from the database
-            for measurement in Store_measurements.query.all():
-                writer.writerow([measurement.id, measurement.user_id, measurement.timestamp, measurement.reaction_time])
-        with open('database.csv', 'rb') as f:
-            # Attach the csv file to the email
-            msg.attach("database.csv", "text/csv", f.read())
-        mail.send(msg)
-
-# Schedule the function to run periodically
-import schedule
-import time
-
-def job():
-    send_csv_file()
-
-schedule.every().day.at("07:00").do(job)
-
-while True:
-    schedule.run_pending()
-    time.sleep(3600)  # Sleep for an hour and revise again schedule to run pending.
