@@ -76,11 +76,24 @@ def download_csv_file():
                  as_attachment=True)
 
 
+#@app.route('/display_data_201709739', methods=['POST', 'GET'])
+#def display_csv_file():
+#    with app.app_context():
+#        data = Store_measurements.query.all()
+#        return render_template('display_data.html', data=data)
+
 @app.route('/display_data_201709739', methods=['POST', 'GET'])
 def display_csv_file():
     with app.app_context():
-        data = Store_measurements.query.all()
+        start_date = request.form.get('start_date')
+        end_date = request.form.get('end_date')
+        if start_date and end_date:
+            data = Store_measurements.query.filter(Store_measurements.timestamp >= start_date, Store_measurements.timestamp <= end_date).all()
+        else:
+            data = Store_measurements.query.limit(2).all()
         return render_template('display_data.html', data=data)
+
+
 
 
 if __name__ == '__main__':

@@ -1,4 +1,11 @@
-<table>
+<form action="/display_data_201709739" method="post">
+  Start date: <input type="text" name="start_date">
+  End date: <input type="text" name="end_date">
+  <input type="submit" value="Submit">
+</form>
+
+{% if data %}
+  <table>
     <tr>
       <th>id</th>
       <th>user_id</th>
@@ -14,4 +21,7 @@
       </tr>
     {% endfor %}
   </table>
+{% else %}
+  <p>No measurements found.</p>
+{% endif %}
   
