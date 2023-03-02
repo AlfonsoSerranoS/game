@@ -223,6 +223,7 @@ function play() {
     element.setVelocity();
     element.setStartTime(new Date().toISOString());
     console.log("Mehtod 'setVelocity' called. Now the object should move...");
+
     var object_detected = ({ keyCode }) => {
       if (keyCode == 32 && game_ended==0) {
         console.log("Space key event detected...");
@@ -266,7 +267,10 @@ function play() {
         }, 1000);
       }
     }
-    var object_detected_touchstart = () => {
+    var object_detected_touchstart = (event) => {
+      // Prevent default behavior of touch event
+      event.preventDefault();
+      document.removeEventListener('touchstart', object_detected_touchstart);
       if (game_ended==0) {
         console.log("Touch event detected...");
         element.stop();
