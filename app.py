@@ -76,13 +76,7 @@ def download_csv_file():
                  as_attachment=True)
 
 
-#@app.route('/display_data_201709739', methods=['POST', 'GET'])
-#def display_csv_file():
-#    with app.app_context():
-#        data = Store_measurements.query.all()
-#        return render_template('display_data.html', data=data)
-
-@app.route('/display_data_201709739', methods=['POST', 'GET'])
+@app.route('/display_data_201709739', methods=['POST', 'GET'])  # Use when deployed in Azure as downloading will not be allowed
 def display_csv_file():
     with app.app_context():
         start_date = request.form.get('start_date')
